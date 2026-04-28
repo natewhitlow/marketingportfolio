@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <title>Nathaniel Whitlow | Portfolio 2026</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #020617;
+            color: #f8fafc;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #020617; }
+        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #3b82f6; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-in { animation: fadeIn 0.7s ease-out forwards; }
+        
+        @keyframes zoomIn { from { transform: scale(0); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        .zoom-in { animation: zoomIn 0.3s ease-out forwards; }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        const Icon = ({ name, className = "w-5 h-5" }) => {
+            useEffect(() => {
+                if (window.lucide) window.lucide.createIcons();
+            }, []);
+            return <i data-lucide={name} className={className}></i>;
+        };
+
+        const App = () => {
+            const [currentPage, setCurrentPage] = useState('home');
+
+            // Asset Links
+            const headshotUrl = "https://i.imgur.com/VWhppBz.png";
+            const vertUrl1 = "https://i.imgur.com/1SwlrDR.mp4";
+            const vertUrl2 = "https://i.imgur.com/O5tSRX3.mp4";
+            const vertUrl3 = "https://i.imgur.com/fEGxTcG.mp4";
+            const imgurGalleryUrl1 = "https://i.imgur.com/dL6DKD1.png";
+            const imgurGalleryUrl2 = "https://i.imgur.com/lNsEuhV.png";
+            const imgurGalleryUrl3 = "https://i.imgur.com/DQmSKGX.png";
+            const imgurGalleryUrl4 = "https://i.imgur.com/hNzn3rb.png";
+            const imgurGalleryUrl5 = "https://i.imgur.com/h1J8U3o.png";
+            const postProcessingLeft = "https://i.imgur.com/zbAzGiM.png";
+            const postProcessingRight = "https://i.imgur.com/MUfnK6Z.png";
+
+            useEffect(() => {
+                window.scrollTo(0, 0);
+            }, [currentPage]);
+
+            const navItems = [
+                { id: 'home', label: 'Home' },
+                { id: 'case-studies', label: 'Case Studies' },
+                { id: 'strategy', label: 'Strategy' },
+                { id: 'gallery', label: 'Gallery' },
+                { id: 'about', label: 'About' }
+            ];
+
+            const Home = () => (
+                <section className="relative min-h-[80vh] flex items-center justify-center pt-20 px-6 overflow-hidden animate-in">
+                    <div className="absolute inset-0 bg-gradient-to-br from-blue-600/5 via-transparent to-transparent opacity-50" />
+                    <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center z-10">
+                        <div className="text-center lg:text-left order-2 lg:order-1">
+                            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-[10px] font-bold uppercase tracking-widest mb-8">
+                                <Icon name="award" className="w-3 h-3" /> Master of Science Candidate
+                            </div>
+                            <h1 className="text-5xl md:text-8xl font-black mb-8 leading-[0.9] tracking-tighter text-white">
+                                DATA-DRIVEN <br />
+                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400">VISUAL STORIES.</span>
+                            </h1>
+                            <p className="text-xl text-slate-400 mb-12 max-w-xl mx-auto lg:mx-0 font-light leading-relaxed">
+                                Generating <span className="text-white font-semibold">100k+ Views</span> and <span className="text-white font-semibold">665k impressions</span> through cinematic production and scalable content engines.
+                            </p>
+                            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                                <button onClick={() => setCurrentPage('case-studies')} className="bg-white text-black px-10 py-5 rounded-full font-bold hover:bg-blue-500 hover:text-white transition-all transform hover:scale-105 flex items-center justify-center gap-2 uppercase text-xs tracking-widest">
+                                    VIEW CASE STUDIES <Icon name="arrow-right" className="w-4 h-4" />
+                                </button>
+                            </div>
+                        </div>
+                        <div className="order-1 lg:order-2 flex justify-center">
+                            <div className="relative group w-full max-w-md aspect-[4/5] rounded-[3rem] border border-white/10 bg-slate-900 overflow-hidden shadow-2xl transition-all hover:border-blue-500/50">
+                                <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/10 to-transparent z-10 pointer-events-none" />
+                                <img src={headshotUrl} alt="Nathaniel Whitlow" className="w-full h-full object-cover object-top grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-in-out" loading="eager" />
+                                <div className="absolute inset-0 flex flex-col items-center justify-center bg-white/5 -z-10">
+                                    <Icon name="image" className="w-12 h-12 text-slate-700 mb-4" />
+                                    <p className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-600">Rendering Identity...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            );
+
+            const CaseStudies = () => (
+                <div className="animate-in py-20 px-6 max-w-7xl mx-auto">
+                    <section className="py-20 px-6">
+                        <div className="max-w-7xl mx-auto">
+                            <div className="grid lg:grid-cols-2 gap-20 items-start mb-24">
+                                <div>
+                                    <p className="text-blue-500 font-bold uppercase tracking-[0.2em] text-[10px] mb-4">Case Study 01</p>
+                                    <h2 className="text-4xl md:text-6xl font-black mb-8 leading-tight text-white uppercase">NEP Ministries: <br />The Growth Engine</h2>
+                                    <div className="space-y-8">
+                                        <div className="p-6 bg-white/5 rounded-2xl border-l-4 border-blue-500 backdrop-blur-sm">
+                                            <h3 className="text-blue-400 font-bold text-[10px] mb-2 uppercase tracking-widest">Situation</h3>
+                                            <p className="text-slate-400 leading-relaxed italic text-sm md:text-base">
+                                                "Transitioning a legacy organization into a video-first community, bridging a multi-generational digital divide without a paid advertising budget."
+                                            </p>
+                                        </div>
+                                        <div className="space-y-6">
+                                            <h3 className="text-blue-400 font-bold text-[10px] uppercase tracking-widest">The Action</h3>
+                                            {[
+                                                { icon: "video", title: "End-to-End Production", desc: "Spearheaded cinematic storytelling using Canon R-Series & DaVinci Resolve Studio." },
+                                                { icon: "layers", title: "Repurposing System", desc: "Architected a workflow transforming 1 sermon into 15+ micro-assets for Reels/TikTok." },
+                                                { icon: "trending-up", title: "Data Audit", desc: "Weekly analytics reviews resulting in a 5.2% average CTR for YouTube thumbnails." }
+                                            ].map((item, i) => (
+                                                <div key={i} className="flex gap-4 group">
+                                                    <div className="w-10 h-10 shrink-0 bg-blue-500/10 rounded-lg flex items-center justify-center text-blue-500 group-hover:bg-blue-500 group-hover:text-white transition-all">
+                                                        <Icon name={item.icon} />
+                                                    </div>
+                                                    <div>
+                                                        <p className="font-bold text-white text-base">{item.title}</p>
+                                                        <p className="text-sm text-slate-400">{item.desc}</p>
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="grid grid-cols-2 gap-4">
+                                    {[
+                                        { val: "100.4k", label: "Engaged Views" },
+                                        { val: "665.8k", label: "Total Impressions" },
+                                        { val: "5.2%", label: "Average CTR" },
+                                        { val: "4400%", label: "Reach-to-Follower Ratio" }
+                                    ].map((stat, i) => (
+                                        <div key={i} className="bg-white/5 p-10 rounded-[2.5rem] border border-white/10 text-center hover:border-blue-500 transition-all hover:bg-blue-500/5 group">
+                                            <p className="text-4xl md:text-5xl font-black text-white mb-2 group-hover:text-blue-400 transition-colors">{stat.val}</p>
+                                            <p className="text-[10px] uppercase font-bold text-slate-500 tracking-widest group-hover:text-slate-300">{stat.label}</p>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                            <div className="bg-slate-900/50 rounded-[3rem] p-8 md:p-16 border border-white/5 shadow-2xl">
+                                <div className="grid md:grid-cols-2 gap-12 items-center">
+                                    <div>
+                                        <div className="relative group overflow-hidden rounded-2xl aspect-video bg-slate-800 border border-white/10 flex">
+                                            <div className="flex-1 overflow-hidden border-r border-white/10 relative">
+                                                <img src={postProcessingLeft} className="w-full h-full object-cover object-[80%_20%] scale-[1.2]" alt="Raw Capture" />
+                                            </div>
+                                            <div className="flex-1 overflow-hidden relative">
+                                                <img src={postProcessingRight} className="w-full h-full object-cover object-[80%_20%] scale-[1.2]" alt="Final Grade" />
+                                            </div>
+                                            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-500/5 to-blue-500/10 flex items-center justify-center pointer-events-none">
+                                                <div className="w-[1px] h-full bg-white/20 relative">
+                                                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-blue-600 text-white text-[8px] font-black px-2 py-1 rounded shadow-lg uppercase tracking-tighter whitespace-nowrap">COLOR ACCURACY PROOF</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="flex mt-6 px-2">
+                                            <div className="flex-1 text-center"><span className="inline-block px-4 py-1.5 bg-white/5 border border-white/10 rounded-full text-[9px] font-black uppercase tracking-[0.3em] text-slate-500">Before</span></div>
+                                            <div className="flex-1 text-center border-l border-white/5"><span className="inline-block px-4 py-1.5 bg-blue-500/10 border border-blue-500/20 rounded-full text-[9px] font-black uppercase tracking-[0.3em] text-blue-400">After</span></div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <h3 className="text-2xl font-bold mb-4 italic text-white uppercase">Post-Processing & Design</h3>
+                                        <p className="text-slate-400 leading-relaxed mb-6">Showcasing precise <span className="text-white font-medium">Color Correction</span> and <span className="text-white font-medium">Grading</span> skills. I bridge the gap between raw capture and professional high-intent visuals using a calibrated DaVinci Resolve workflow.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section className="py-24 px-6 bg-[#03081a] border-y border-white/5">
+                        <div className="max-w-7xl mx-auto flex flex-col md:flex-row-reverse gap-20 items-center">
+                            <div className="md:w-1/2">
+                                <p className="text-blue-500 font-bold uppercase tracking-[0.2em] text-[10px] mb-4">Case Study 02</p>
+                                <h2 className="text-4xl md:text-6xl font-black mb-8 leading-tight">Ringmaster: <br />B2B Authority</h2>
+                                <p className="text-slate-400 mb-10 leading-relaxed text-sm md:text-base">Managing end-to-end production for high-value B2B podcasts. Building systems to attract and convert C-Suite executives.</p>
+                                <div className="grid grid-cols-1 gap-8">
+                                    {[
+                                        { icon: "users", title: "C-Suite Acquisition", desc: "Used LinkedIn/Crunchbase to source and book industry leaders." },
+                                        { icon: "database", title: "Pipeline Management", desc: "Ensured 100% on-time publishing across complex multi-guest schedules." }
+                                    ].map((item, i) => (
+                                        <div key={i} className="flex gap-4 items-start group">
+                                            <div className="text-blue-500 mt-1 p-2 bg-blue-500/10 rounded-lg group-hover:bg-blue-600 group-hover:text-white transition-all"><Icon name={item.icon} /></div>
+                                            <div><h4 className="font-bold text-white text-base">{item.title}</h4><p className="text-sm text-slate-500 leading-snug">{item.desc}</p></div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                            <div className="md:w-1/2 w-full aspect-square bg-white/5 rounded-[3rem] border border-white/10 flex items-center justify-center p-12 overflow-hidden relative">
+                                <div className="bg-blue-600 rounded-2xl p-8 shadow-2xl shadow-blue-600/20 transform rotate-2 w-full max-w-xs">
+                                     <p className="text-[9px] font-black uppercase tracking-[0.2em] mb-2 text-blue-200">System Dashboard</p>
+                                     <p className="text-xl font-black text-white mb-6">Podcast Workflow <br />v2.4.0</p>
+                                     <div className="space-y-3">
+                                       <div className="h-1.5 w-full bg-blue-900/40 rounded-full overflow-hidden"><div className="h-full w-full bg-white animate-pulse" /></div>
+                                       <div className="h-1.5 w-full bg-blue-900/40 rounded-full overflow-hidden"><div className="h-full w-4/5 bg-blue-200 opacity-60" /></div>
+                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            );
+
+            const Strategy = () => (
+                <div className="py-20 px-6 animate-in max-w-7xl mx-auto text-white">
+                    <div className="text-center mb-24">
+                        <h2 className="text-4xl md:text-6xl font-black mb-6 uppercase tracking-tighter">Strategic Infrastructure</h2>
+                        <p className="text-slate-400 max-w-2xl mx-auto text-sm md:text-base leading-relaxed">Success is a repeatable system, not a fluke. Here is how I manage lead pipelines and multi-platform growth.</p>
+                    </div>
+                    <div className="grid lg:grid-cols-3 gap-8">
+                        <div className="lg:col-span-2 bg-white/5 rounded-[3rem] p-10 md:p-16 border border-white/10 backdrop-blur-md">
+                            <h3 className="text-2xl font-bold mb-12 flex items-center gap-3"><Icon name="target" className="text-blue-500" /> Byte Pushers: Lead Gen Funnel</h3>
+                            <div className="flex flex-col items-center">
+                                <div className="w-full max-w-md space-y-4">
+                                    <div className="bg-blue-900/20 border border-blue-500/20 py-8 text-center rounded-2xl relative shadow-lg">
+                                        <span className="text-[11px] font-black uppercase tracking-widest text-blue-400">500+ RAW B2B DATA LEADS</span>
+                                        <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 text-blue-500/50"><Icon name="chevron-right" className="rotate-90 w-8 h-8" /></div>
+                                    </div>
+                                    <div className="bg-blue-900/30 border border-blue-500/30 py-8 text-center rounded-2xl w-[85%] mx-auto relative shadow-lg">
+                                        <span className="text-[11px] font-black uppercase tracking-widest text-blue-300">MANUAL VERIFICATION & HYGIENE</span>
+                                        <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 text-blue-500/50"><Icon name="chevron-right" className="rotate-90 w-8 h-8" /></div>
+                                    </div>
+                                    <div className="bg-blue-600 py-8 text-center rounded-2xl w-[70%] mx-auto shadow-2xl shadow-blue-600/30 text-white font-black uppercase tracking-widest text-[11px]">26% CONVERSION RATE</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="bg-blue-700 rounded-[3rem] p-12 text-white shadow-2xl shadow-blue-900/20 flex flex-col justify-between">
+                            <div>
+                                <h3 className="text-2xl font-black mb-10 tracking-tight leading-tight uppercase">Professional <br />Tech Stack</h3>
+                                <div className="space-y-8">
+                                    {[
+                                        { cat: "Creative", list: "DaVinci Resolve Studio, Affinity Photo, Canva Pro" },
+                                        { cat: "Production", list: "Canon R-Series, DJI RS 4 Mini" },
+                                        { cat: "Distribution", list: "Meta Suite, YouTube Studio, Buffer, Planoly" },
+                                        { cat: "Strategy", list: "CRM Management, Lead Scraping, ABM" }
+                                    ].map((stack, i) => (
+                                        <div key={i} className="border-b border-white/10 pb-4 last:border-0 opacity-80">
+                                            <p className="text-[9px] font-black uppercase tracking-[0.2em] text-blue-200 mb-2">{stack.cat}</p>
+                                            <p className="text-sm font-bold leading-snug">{stack.list}</p>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            );
+
+            const Gallery = () => (
+                <section className="py-20 px-6 animate-in max-w-7xl mx-auto">
+                    <div className="text-center mb-24 uppercase">
+                        <h2 className="text-4xl md:text-6xl font-black mb-6 text-white tracking-tighter">Content Gallery</h2>
+                        <p className="text-slate-400 lowercase italic">Curating high-retention short-form assets, strategic thumbnail design, and professional creative production.</p>
+                    </div>
+                    <div className="space-y-16">
+                        <div>
+                            <div className="flex items-center gap-2 mb-6 text-blue-500 font-black text-[10px] uppercase tracking-[0.2em]"><Icon name="smartphone" /> Vertical Shorts / Reels</div>
+                            <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
+                                {[vertUrl1, vertUrl2, vertUrl3].map((src, i) => (
+                                    <div key={i} className="group relative aspect-[9/16] bg-slate-900 border border-white/10 rounded-[2.5rem] overflow-hidden hover:border-blue-500 transition-all shadow-xl">
+                                        <video src={src} autoPlay muted loop playsInline controls className="w-full h-full object-cover" />
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                        <div>
+                            <div className="flex items-center gap-2 mb-6 text-blue-400 font-black text-[10px] uppercase tracking-[0.2em]"><Icon name="mouse-pointer-click" /> Strategic Thumbnail & CTR Design</div>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                                {[imgurGalleryUrl1, imgurGalleryUrl2].map((src, i) => (
+                                    <div key={i} className="group relative aspect-video bg-slate-900 border border-white/10 rounded-[3rem] overflow-hidden hover:border-blue-400 transition-all cursor-pointer shadow-xl">
+                                        <img src={src} className="w-full h-full object-cover" />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60" />
+                                        <div className="absolute bottom-0 left-0 right-0 p-8 text-white font-black uppercase text-[10px] tracking-widest">Identity Mastery {i === 0 ? 'Alpha' : 'Beta'}</div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                        <div>
+                            <div className="flex items-center gap-2 mb-6 text-slate-500 font-black text-[10px] uppercase tracking-[0.2em]"><Icon name="video" /> Standard Landscape Assets</div>
+                            <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
+                                {[imgurGalleryUrl3, imgurGalleryUrl4, imgurGalleryUrl5].map((src, i) => (
+                                    <div key={i} className="group relative aspect-video bg-slate-900 border border-white/10 rounded-[2rem] overflow-hidden hover:border-blue-500 transition-all">
+                                        <img src={src} className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-all duration-500" />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent opacity-60" />
+                                        <div className="absolute bottom-0 left-0 right-0 p-6 translate-y-2 group-hover:translate-y-0 transition-transform">
+                                            <p className="text-[10px] font-black uppercase tracking-widest text-white leading-tight">Visual Asset {i + 1}</p>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            );
+
+            const About = () => (
+                <div className="animate-in py-20 px-6 max-w-4xl mx-auto text-center">
+                    <div className="flex flex-col items-center mb-16">
+                        <div className="w-24 h-24 rounded-full border-2 border-blue-500 overflow-hidden mb-6 shadow-xl">
+                            <img src={headshotUrl} alt="NW" className="w-full h-full object-cover object-top" />
+                        </div>
+                        <h2 className="text-4xl md:text-6xl font-black mb-12 uppercase italic tracking-tighter text-white">The Narrative</h2>
+                        <p className="text-xl md:text-3xl text-slate-300 italic leading-relaxed md:px-10">"I spent 6 years translating organizational heart into a digital voice that sustained the community globally."</p>
+                    </div>
+                    <div className="grid md:grid-cols-2 gap-6 text-left mb-20">
+                        <div className="p-8 bg-white/5 rounded-3xl border border-white/10 flex items-center gap-6"><Icon name="award" className="text-blue-500 w-8 h-8 shrink-0" /><div><p className="text-[10px] font-black uppercase text-slate-500 mb-1">Education</p><p className="font-bold text-white">M.S. in Digital Marketing (Exp. Nov 2026)</p></div></div>
+                        <div className="p-8 bg-white/5 rounded-3xl border border-white/10 flex items-center gap-6"><Icon name="monitor" className="text-blue-500 w-8 h-8 shrink-0" /><div><p className="text-[10px] font-black uppercase text-slate-500 mb-1">Expertise</p><p className="font-bold text-white">DaVinci Resolve & Affinity Studio Expert</p></div></div>
+                    </div>
+                    <div className="bg-gradient-to-br from-blue-600 to-blue-700 rounded-[3.5rem] p-12 md:p-20 shadow-2xl relative overflow-hidden">
+                        <h3 className="text-4xl md:text-5xl font-black mb-10 text-white uppercase italic tracking-tighter">Contact Me</h3>
+                        <div className="flex flex-col items-center gap-8 mb-12 text-white font-black">
+                            <a href="mailto:nathanieljwhitlow@gmail.com" className="flex items-center gap-4 text-xl md:text-3xl hover:text-blue-100 transition-colors"><div className="p-4 bg-white/10 rounded-2xl shadow-lg"><Icon name="mail" className="w-8 h-8" /></div> nathanieljwhitlow@gmail.com</a>
+                            <a href="tel:6034513331" className="flex items-center gap-4 text-xl md:text-3xl hover:text-blue-100 transition-colors"><div className="p-4 bg-white/10 rounded-2xl shadow-lg"><Icon name="phone" className="w-8 h-8" /></div> 603-451-3331</a>
+                        </div>
+                        <a href="https://www.linkedin.com/in/nathaniel-whitlow-936793239" target="_blank" className="bg-blue-800/30 text-white border border-white/20 px-12 py-5 rounded-full font-black text-xs uppercase tracking-widest hover:bg-blue-800/50 transition-all inline-block"><Icon name="linkedin" className="inline mr-2" /> Connect On Linkedin</a>
+                    </div>
+                </div>
+            );
+
+            return (
+                <div className="min-h-screen flex flex-col bg-[#020617] text-slate-100 selection:bg-blue-500/30">
+                    <nav className="fixed top-0 w-full z-50 bg-[#020617]/80 backdrop-blur-md border-b border-white/10">
+                        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+                            <div className="flex flex-col cursor-pointer" onClick={() => setCurrentPage('home')}>
+                                <span className="font-black tracking-tighter text-2xl md:text-3xl leading-none uppercase">NATHANIEL WHITLOW</span>
+                                <span className="text-[10px] text-blue-500 font-bold tracking-[0.3em] uppercase mt-1">Content Manager</span>
+                            </div>
+                            <div className="hidden lg:flex gap-12 text-xs font-bold uppercase tracking-widest">
+                                {navItems.map((item) => (
+                                    <button 
+                                        key={item.id} 
+                                        onClick={() => setCurrentPage(item.id)}
+                                        className={`hover:text-blue-400 transition-colors relative py-2 ${currentPage === item.id ? 'text-blue-500' : 'text-slate-400'}`}
+                                    >
+                                        {item.label}
+                                        {currentPage === item.id && <div className="zoom-in absolute bottom-0 left-0 right-0 h-0.5 bg-blue-500 rounded-full" />}
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
+                    </nav>
+
+                    <main className="flex-grow pt-24">
+                        {currentPage === 'home' && <Home />}
+                        {currentPage === 'case-studies' && <CaseStudies />}
+                        {currentPage === 'strategy' && <Strategy />}
+                        {currentPage === 'gallery' && <Gallery />}
+                        {currentPage === 'about' && <About />}
+                    </main>
+
+                    <footer className="py-16 border-t border-white/5 px-6 text-center bg-[#01040f]">
+                        <div className="flex flex-col items-center gap-6">
+                            <div className="flex flex-col cursor-pointer" onClick={() => setCurrentPage('home')}>
+                                <span className="font-black tracking-tighter text-2xl leading-none uppercase">NATHANIEL WHITLOW</span>
+                                <span className="text-[10px] text-blue-500 font-bold tracking-[0.4em] uppercase mt-1">Portfolio 2026</span>
+                            </div>
+                            <p className="text-slate-600 text-[9px] font-black uppercase tracking-[0.4em] max-w-xs leading-relaxed">
+                                Digital Content Management • Organic Growth Specialist • 100k+ Views
+                            </p>
+                        </div>
+                    </footer>
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
